@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('login', async ({ page }) => {
+test('seccsessful login', async ({ page }) => {
     await page.goto ('https://www.saucedemo.com/');
 
     await page.fill ('#user-name', 'standard_user' );
