@@ -1,10 +1,9 @@
 import { test as setup, request, expect } from '@playwright/test';
+import { ENV } from '../config/env';
 
-const APP_URL = 'https://plbn.ovh';
-const API_URL = 'https://api.plbn.ovh/v1';
 
 setup('auth setup', async ({ browser }) => {
-  // 🔥 1. создаём context С BASIC AUTH
+  // 1. создаём context С BASIC AUTH
   const context = await browser.newContext({
     httpCredentials: {
       username: 'litdev',
@@ -14,14 +13,14 @@ setup('auth setup', async ({ browser }) => {
 
   const page = await context.newPage();
 
-  // 2. API client (отдельно)
+  // 2. API client 
   const api = await request.newContext({
     extraHTTPHeaders: {
       Accept: 'application/json',
     },
   });
 
-  const response = await api.post(`${API_URL}/auth/social/login`, {
+  const response = await api.post(`${ENV.API_URL}/auth/social/login`, {
     data: {
       provider_name: 'google',
       provider_id: '115296032587177509456',
@@ -38,7 +37,7 @@ setup('auth setup', async ({ browser }) => {
   const expiresAt = Date.now() + 365 * 24 * 60 * 60 * 1000;
 
   const authUrl =
-    `${APP_URL}/en/auth/sign-in/token?token=${encodeURIComponent(token)}&expiresAt=${expiresAt}`;
+    `${ENV.WEB_URL}/en/auth/sign-in/token?token=${encodeURIComponent(token)}&expiresAt=${expiresAt}`;
 
   await page.goto(authUrl);
 

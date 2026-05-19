@@ -5,7 +5,7 @@
       "value": "desktop",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552733.311195,
+      "expires": 1810723488.158835,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -25,7 +25,7 @@
       "value": "false",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552733,
+      "expires": 1810723488,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -35,7 +35,7 @@
       "value": "en",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552730.925884,
+      "expires": 1810723485.05293,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -61,11 +61,21 @@
       "sameSite": "Lax"
     },
     {
+      "name": "sessionId",
+      "value": "c9cb47cb-ec97-4d71-bfe7-e132f7f9a2d2",
+      "domain": "plbn.ovh",
+      "path": "/",
+      "expires": 1779189288.158884,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
       "name": "userProfileLanguage",
       "value": "en",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552733.311427,
+      "expires": 1810723488.158905,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -75,7 +85,7 @@
       "value": "false",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552733.311493,
+      "expires": 1810723488.158921,
       "httpOnly": true,
       "secure": false,
       "sameSite": "Lax"
@@ -85,7 +95,7 @@
       "value": "false",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552733.311611,
+      "expires": 1810723488.158938,
       "httpOnly": true,
       "secure": false,
       "sameSite": "Lax"
@@ -95,7 +105,7 @@
       "value": "true",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552733.311694,
+      "expires": 1810723488.158959,
       "httpOnly": true,
       "secure": false,
       "sameSite": "Lax"
@@ -105,24 +115,14 @@
       "value": "%7B%22id%22%3A372%2C%22email%22%3A%22ewre3243ut%40gmail.com%22%2C%22name%22%3A%22wer%20asd%22%2C%22firstName%22%3A%22wer%22%2C%22lastName%22%3A%22asd%22%7D",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552733.311754,
+      "expires": 1810723488.158976,
       "httpOnly": true,
       "secure": false,
       "sameSite": "Lax"
     },
     {
-      "name": "sessionId",
-      "value": "05108e52-168b-4370-bb76-bcd447cc7f5a",
-      "domain": "plbn.ovh",
-      "path": "/",
-      "expires": 1779018533.31135,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
       "name": "__Secure-next-auth.callback-url",
-      "value": "https%3A%2F%2Fplbn.ovh%2Fen%2Fauth%2Fsign-in%2Ftoken%3Ftoken%3D5268%7CcqSCKXJ7gTo9GU9Vt4OB3XqoWnuqx58qXMkoDSwr4c04c293%26expiresAt%3D1810552730566",
+      "value": "https%3A%2F%2Fplbn.ovh%2Fen%2Fauth%2Fsign-in%2Ftoken%3Ftoken%3D5322%7C1VKyNrikMhzs1bV7IpAnwgE7VhFvPxLvX6nIGVuu8a29de19%26expiresAt%3D1810723484593",
       "domain": "plbn.ovh",
       "path": "/",
       "expires": -1,
@@ -132,17 +132,17 @@
     },
     {
       "name": "token",
-      "value": "5268%7CcqSCKXJ7gTo9GU9Vt4OB3XqoWnuqx58qXMkoDSwr4c04c293",
+      "value": "5322%7C1VKyNrikMhzs1bV7IpAnwgE7VhFvPxLvX6nIGVuu8a29de19",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552732.296136,
+      "expires": 1810723486.408357,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "expiresAt",
-      "value": "1810552730566",
+      "value": "1810723484593",
       "domain": "plbn.ovh",
       "path": "/",
       "expires": -1,
@@ -152,10 +152,10 @@
     },
     {
       "name": "__Secure-next-auth.session-token",
-      "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..k4ChVNmguzqiw3L_.Iz8VGEK6IPhk5wycE7cY0ShFg5hQWeZ_K4sydINQactZk2mujcu-tnSrGQHTf2d_yGDXjkKGglH0PfdkdCxp1CF7mMEcQXQNJfJnrCkBefmLjbZaSe870izoFplJc4brhhkJoQRBZvTckx6dwVijYN_Pl2oJjErJzjVmPxmguZw_jzbHKApyLUhc2DNFKZqEIAMPNwua4MA5ieTw0js64tm19L7QRAFyqG7BEXjYoHyrhxuH6HTjd6aghpg.ULMtwlgqmVCjLF9IdFvk0Q",
+      "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..RfSmbancJ4rHI9Zb.j_RCJCu5Xw7nd0qrww2FTUHxEZrFk0iM8sqiMpL_jHys7blPQRmPZfRiKbX_Wl4gPEG1ZvxMdAvw9lj43EWddR3_0LyGBqR0qmOUtRx8QPPq1iJ-sDGBW-PxbC6DON5bMnXgZlpG2_mFi1HVHdge4wZWPXtMhe6XalL8ICw17-cbg_X6iibIHURehwygYV3GtSTMRbAg-oo_ZcG06KlR9X1LohwpqTmUfl_GJmxcEDXUMUWPCPCAzDS9St0.zXX3DQB8z5bQ3sJQYMkoqQ",
       "domain": "plbn.ovh",
       "path": "/",
-      "expires": 1810552732.348827,
+      "expires": 1810723486.461182,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"

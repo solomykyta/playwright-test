@@ -1,15 +1,19 @@
 import { Page } from '@playwright/test';
 
 export async function closePopups(page: Page) {
-  const langClose = page.getByTestId('languages-modal').locator('button').first();
 
-  if (await langClose.isVisible().catch(() => false)) {
-    await langClose.click();
-  }
+  for (let i = 0; i < 3; i++) {
+    const langClose = page.getByTestId('languages-modal').locator('button').first();
+    const cookieBtn = page.locator('#silktide-banner .accept-all');
 
-  const cookieBtn = page.getByRole('button', { name: 'Прийняти все' });
+    if (await langClose.isVisible().catch(() => false)) {
+      await langClose.click();
+      await page.waitForTimeout(500);
+    }
 
-  if (await cookieBtn.isVisible().catch(() => false)) {
-    await cookieBtn.click();
+    if (await cookieBtn.isVisible().catch(() => false)) {
+      await cookieBtn.click();
+      await page.waitForTimeout(500);
+    }
   }
 }
