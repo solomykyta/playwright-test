@@ -3,7 +3,6 @@
 ## Description
 
 UI and API test automation framework built with Playwright + TypeScript.
-
 Uses global setup for authentication and storageState for authenticated test runs.
 
 ---
@@ -37,15 +36,16 @@ storage/ - auth state
 
 ---
 
+Notes
+- Environment variables are managed via .env
+- Sensitive data is excluded from repository
+- Auth state is generated via Playwright global setup
+
+---
+
 ## Run tests
 
 ```bash
 npm install
 npx playwright test
 npx playwright test --project=setup
-
-
-Notes
-Environment variables are managed via .env
-Sensitive data is excluded from repository
-Auth state is generated via Playwright global setup
