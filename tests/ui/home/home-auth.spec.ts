@@ -1,0 +1,3 @@
+library button visible
+notifications visible
+personalized widgets visible
