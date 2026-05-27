@@ -8,7 +8,6 @@ export default defineConfig({
 
   retries: 0,
 
-  // ❗ глобальные настройки браузера
   use: {
     baseURL: ENV.WEB_URL,
 
@@ -32,34 +31,24 @@ export default defineConfig({
   },
 
   projects: [
-    // =========================
-    // 🔥 SETUP PROJECT
-    // =========================
     {
       name: 'setup',
       testMatch: '**/*.setup.ts',
 
       use: {
-        // ❗ КРИТИЧНО: setup НЕ должен читать storage
         storageState: undefined,
       },
     },
 
-    // =========================
-    // 🧪 AUTHENTICATED TESTS
-    // =========================
     {
       name: 'chromium',
       dependencies: ['setup'],
 
       use: {
-        storageState: 'storage/google.json', // 👈 ТВОЙ ФАЙЛ
+        storageState: 'storage/google.json', 
       },
     },
 
-    // =========================
-    // 👤 GUEST MODE
-    // =========================
     {
       name: 'guest',
       use: {
