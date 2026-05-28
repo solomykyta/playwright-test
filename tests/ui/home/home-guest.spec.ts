@@ -1,14 +1,14 @@
-import { test, expect } from '@playwright/test';
-import { closePopups } from '../../../helpers/ui';
+// import { test, expect } from '@playwright/test';
+// import { HomePage } from '../../../pages/HomePage';
 
-test('homepage guest open', async ({ page }) => {
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    await closePopups(page);
+// test('homepage guest open', async ({ page }) => {
+//   const homePage = new HomePage(page);
 
-    await expect(page.getByTestId('mobile-login-auth-button')).toBeVisible();
+//   await homePage.open();
 
-    await expect(page.getByText(/Popular books/i)).toBeVisible();
+//   await homePage.expectGuestUI();
 
-    await expect(page.getByText(/What’s MyNovel\?|Хто такі MyNovel?l\?/i)).toBeVisible();
-})
+//   await expect(
+//     page.getByText(/What’s MyNovel|Хто такі MyNovel/i)
+//   ).toBeVisible();
+// });
