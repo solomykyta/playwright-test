@@ -8,7 +8,7 @@ test.describe('Book Page API', () => {
   test('book page data returns correct book info', async ({ request }) => {
 
     const response = await request.get(
-      `${ENV.API_URL}/pages/book/${BOOK_SLUG}`,
+      `${ENV.API_URL}/v1/pages/book/${BOOK_SLUG}`,
       {
         headers: {
           'Accept-Language': 'en',

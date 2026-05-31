@@ -1,11 +1,13 @@
 import { defineConfig } from '@playwright/test';
 import { ENV } from './config/env';
+import path from 'path';
+
+const storagePath = path.join(process.cwd(), 'storage/google.json');
 
 export default defineConfig({
   testDir: './tests',
 
   fullyParallel: false,
-
   retries: 0,
 
   use: {
@@ -33,7 +35,7 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: '**/*.setup.ts',
+      testMatch: /.*\.setup\.ts/,
 
       use: {
         storageState: undefined,
@@ -45,15 +47,8 @@ export default defineConfig({
       dependencies: ['setup'],
 
       use: {
-        storageState: 'storage/google.json', 
+        storageState: storagePath,
       },
     },
-
-    // {
-    //   name: 'guest',
-    //   use: {
-    //     storageState: undefined,
-    //   },
-    // },
   ],
 });

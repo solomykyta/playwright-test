@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const CHAPTER_ENDPOINT =
-  '/books/alice-to-find-her-way-into-iEhIQSsL/chapters/1-rabbit-say-to12-ziPgOhDj';
+  '/v1/books/alice-to-find-her-way-into-iEhIQSsL/chapters/1-rabbit-say-to12-ziPgOhDj';
 
 test.describe('Reader API', () => {
   test('reader chapter content is returned correctly', async ({ request }) => {

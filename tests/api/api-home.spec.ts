@@ -3,7 +3,7 @@ import { ENV } from '../../config/env';
 
 test('GET tags - homepage genres (EN)', async ({ request }) => {
   const response = await request.get(
-    `${process.env.API_URL}/tags?page=1&perPage=100&search=&sortBy=popularity`,
+    `${process.env.API_URL}/v1/tags?page=1&perPage=100&search=&sortBy=popularity`,
     {
       headers: {
         'Accept-Language': 'en',
@@ -41,7 +41,7 @@ test('GET tags - homepage genres (EN)', async ({ request }) => {
 
 test('GET tags - Cyberpunk search (stable)', async ({ request }) => {
   const response = await request.get(
-    `${process.env.API_URL}/tags?isGenre=1&perPage=100&search=Cyberpunk`,
+    `${process.env.API_URL}/v1/tags?isGenre=1&perPage=100&search=Cyberpunk`,
     {
       headers: {
         'Accept-Language': 'en',

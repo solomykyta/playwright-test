@@ -1,5 +1,7 @@
 import { test as setup, request, expect } from '@playwright/test';
 import { ENV } from '../../config/env';
+import fs from 'fs';
+import path from 'path';
 
 setup('auth setup', async ({ browser }) => {
   const context = await browser.newContext({
@@ -10,7 +12,6 @@ setup('auth setup', async ({ browser }) => {
   });
 
   const page = await context.newPage();
-
   const api = await request.newContext();
 
   const response = await api.post(
@@ -37,7 +38,6 @@ setup('auth setup', async ({ browser }) => {
     `${ENV.WEB_URL}/en/auth/sign-in/token?token=${encodeURIComponent(token)}&expiresAt=${expiresAt}`;
 
   await page.goto(authUrl);
-
   await page.waitForLoadState('networkidle');
 
   await context.addCookies([
@@ -48,9 +48,11 @@ setup('auth setup', async ({ browser }) => {
       path: '/',
     },
   ]);
+  const storageFile = path.join(process.cwd(), 'storage/google.json');
+  await fs.promises.mkdir(path.dirname(storageFile), { recursive: true });
 
   await context.storageState({
-    path: 'storage/google.json',
+    path: storageFile,
   });
 
   await api.dispose();
