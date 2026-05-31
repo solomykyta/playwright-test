@@ -1,5 +1,6 @@
 export const API_ROUTES = {
-    LOGIN: '/auth/social/login'
+    LOGIN: '/v1/auth/social/login',
+    SUBSCRIPTION_ORDER: '/v1/subscription/order',
 };
 
 export const UI_ROUTES = {
