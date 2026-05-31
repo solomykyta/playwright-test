@@ -49,11 +49,11 @@ export default defineConfig({
       },
     },
 
-    {
-      name: 'guest',
-      use: {
-        storageState: undefined,
-      },
-    },
+    // {
+    //   name: 'guest',
+    //   use: {
+    //     storageState: undefined,
+    //   },
+    // },
   ],
 });

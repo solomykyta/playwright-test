@@ -23,8 +23,7 @@ setup('auth setup', async ({ browser }) => {
       },
     }
   );
-  console.log('STATUS:', response.status());
-  console.log('BODY:', await response.text());
+
   expect(response.ok()).toBeTruthy();
 
   const body = await response.json();
