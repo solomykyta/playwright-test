@@ -1,17 +1,20 @@
 import { Page, expect } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class BookPage {
-  constructor(private page: Page) {}
-
+export class BookPage extends BasePage {
   cover = () => this.page.getByTestId('mobile-book-image-cover');
   title = () => this.page.getByTestId('mobile-book-title');
   readButton = () => this.page.getByTestId('mobile-book-read-button');
   abstract = () => this.page.getByTestId('mobile-book-abstract');
   likeButton = () => this.page.getByTestId('book-like-button');
 
+  constructor(page: Page) {
+    super(page);
+  }
+
   async open(slug: string) {
     await this.page.goto(slug);
-    await this.page.waitForLoadState('networkidle');
+    await this.waitForAppReady(); // 👈 из BasePage
   }
 
   async expectBasicUI() {

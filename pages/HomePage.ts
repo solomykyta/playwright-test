@@ -1,8 +1,11 @@
 import { Page, expect } from '@playwright/test';
+import { BasePage } from './BasePage';
 import { closePopups } from '../helpers/ui';
 
-export class HomePage {
-  constructor(private page: Page) {}
+export class HomePage extends BasePage {
+  constructor(page: Page) {
+    super(page);
+  }
 
   headerLogo = () =>
     this.page.locator('header [data-testid="logo-link-element"]');
@@ -19,9 +22,7 @@ export class HomePage {
     });
 
   bookshelfLink = () =>
-    this.page
-      .locator('a[href*="/library/shelf/reading"]:visible')
-      .first();
+    this.page.locator('a[href*="/library/shelf/reading"]:visible').first();
 
   notificationsButton = () =>
     this.page.getByRole('button', { name: 'Notifications' }).first();
@@ -29,18 +30,15 @@ export class HomePage {
   loginButton = () =>
     this.page.getByTestId('mobile-login-auth-button');
 
-
   async open() {
     await this.page.goto('/');
-    await this.page.waitForLoadState('networkidle');
+    await this.waitForAppReady(); // 👈 теперь через BasePage
     await closePopups(this.page);
   }
 
   async expectGuestUI() {
     await expect(this.loginButton()).toBeVisible();
-    await expect(
-      this.page.getByText(/Popular books/i)
-    ).toBeVisible();
+    await expect(this.page.getByText(/Popular books/i)).toBeVisible();
   }
 
   async expectAuthorizedUI() {

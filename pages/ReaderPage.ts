@@ -1,13 +1,12 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class ReaderPage {
-  readonly page: Page;
-
+export class ReaderPage extends BasePage {
   readonly chapterButton: Locator;
   readonly libraryButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
 
     this.chapterButton = page.getByTestId(
       'reader-header-chapters-drawer-button'
@@ -20,10 +19,7 @@ export class ReaderPage {
 
   async open(url: string) {
     await this.page.goto(url);
-  }
-
-  async waitReady() {
-    await this.page.waitForLoadState('networkidle');
+    await this.waitForAppReady(); // 👈 теперь из BasePage
   }
 
   async openChapters() {
