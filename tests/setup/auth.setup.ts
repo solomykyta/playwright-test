@@ -14,7 +14,7 @@ setup('auth setup', async ({ browser }) => {
   const api = await request.newContext();
 
   const response = await api.post(
-    `${ENV.API_URL}/auth/social/login`,
+    `${ENV.API_URL}/v1/auth/social/login`,
     {
       data: {
         provider_name: 'google',
@@ -23,7 +23,8 @@ setup('auth setup', async ({ browser }) => {
       },
     }
   );
-
+  console.log('STATUS:', response.status());
+  console.log('BODY:', await response.text());
   expect(response.ok()).toBeTruthy();
 
   const body = await response.json();
