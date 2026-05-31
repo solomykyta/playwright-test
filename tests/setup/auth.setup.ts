@@ -57,4 +57,5 @@ setup('auth setup', async ({ browser }) => {
 
   await api.dispose();
   await context.close();
+  console.log(await context.cookies());
 });
