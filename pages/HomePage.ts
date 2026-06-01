@@ -22,7 +22,7 @@ export class HomePage extends BasePage {
     });
 
   bookshelfLink = () =>
-    this.page.locator('a[href*="/library/shelf/reading"]:visible').first();
+    this.page.getByRole('link', { name: 'My Bookshelf' });
 
   notificationsButton = () =>
     this.page.getByRole('button', { name: 'Notifications' }).first();
