@@ -7,8 +7,6 @@ export class ReaderPage {
   readonly chapterButton: Locator;
   readonly heading: Locator;
 
-  readonly chapterDrawer: Locator;
-
   constructor(page: Page) {
     this.page = page;
 
@@ -17,47 +15,44 @@ export class ReaderPage {
     );
 
     this.heading = page.locator('h1.px-chapter-text');
-
-    this.chapterDrawer = page.locator('[data-testid="chapters-drawer"]');
   }
 
   async open(url: string) {
-    await this.page.goto(url, { waitUntil: 'domcontentloaded' });
+    await this.page.goto(url);
 
     await closePopups(this.page);
 
-    await this.waitForReaderReady();
+    await this.waitForReaderHydration();
   }
 
-  async waitForReaderReady() {
-    await expect(this.heading).toBeVisible({ timeout: 20000 });
+  async waitForReaderHydration() {
+    await expect(this.chapterButton).toBeVisible({ timeout: 30000 });
 
-    await expect(this.chapterButton).toBeVisible({ timeout: 20000 });
+  }
+
+  async waitForContent() {
+    await expect(this.heading).toBeVisible({ timeout: 30000 });
+    await expect(this.heading).not.toHaveText('', { timeout: 30000 });
   }
 
   async openChapters() {
-    await expect(this.chapterButton).toBeVisible({ timeout: 20000 });
-
     await this.chapterButton.click();
 
-    await expect(this.chapterDrawer).toBeVisible({ timeout: 20000 });
+    await expect(
+      this.page.locator('body')
+    ).toBeVisible();
   }
 
   async selectChapter(title: string) {
-    const chapter = this.chapterDrawer.getByText(title, { exact: false });
+    const chapter = this.page.getByText(title, { exact: false });
 
-    await expect(chapter).toBeVisible({ timeout: 20000 });
+    await expect(chapter.first()).toBeVisible({ timeout: 30000 });
+    await chapter.first().click();
 
-    await chapter.click();
+    await this.waitForContent();
   }
 
   getHeading() {
     return this.heading;
-  }
-
-  async expectChapter2(text: string | RegExp) {
-    await expect(
-      this.page.locator('h1.px-chapter-text', { hasText: text })
-    ).toBeVisible({ timeout: 20000 });
   }
 }

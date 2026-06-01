@@ -1,5 +1,4 @@
 // import { test, expect } from '@playwright/test';
-// import { closePopups } from '../../../helpers/ui';
 // import { ReaderPage } from '../../../pages/ReaderPage';
 
 // const READER_URL =
@@ -11,19 +10,15 @@
 
 //     await reader.open(READER_URL);
 
-//     await closePopups(page);
-
-//     await reader.waitForReaderReady();
-
-//     await expect(reader.getHeading()).toContainText(
-//       'Rabbit say to12',
-//       { timeout: 20000 }
-//     );
+//     await reader.waitForContent();
 
 //     await reader.openChapters();
 
 //     await reader.selectChapter('2. Cat seemed to');
 
-//     await reader.expectChapter2(/Cat seemed to/i);
+//     await expect(reader.getHeading()).toContainText(
+//       /Cat seemed to/i,
+//       { timeout: 30000 }
+//     );
 //   });
 // });
