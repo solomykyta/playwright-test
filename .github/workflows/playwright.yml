@@ -21,7 +21,6 @@ jobs:
       TEST_APPLE_EMAIL: ${{ secrets.TEST_APPLE_EMAIL }}
       TEST_APPLE_PROVIDER_ID: ${{ secrets.TEST_APPLE_PROVIDER_ID }}
 
-
     steps:
       - uses: actions/checkout@v4
 
