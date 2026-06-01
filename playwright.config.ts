@@ -10,15 +10,24 @@ export default defineConfig({
   fullyParallel: false,
   retries: 0,
   timeout: 30_000,
+
+  // 🔥 ВАЖНО: папка для результатов
+  outputDir: 'test-results',
+
   expect: {
-  timeout: 10_000
+    timeout: 10_000,
   },
+
+  // 🔥 HTML report + CLI
+  reporter: [
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
+    ['list'],
+  ],
 
   use: {
     baseURL: ENV.WEB_URL,
     actionTimeout: 10_000,
     navigationTimeout: 20_000,
-    
 
     httpCredentials: {
       username: ENV.BASIC_AUTH_USER,
@@ -43,7 +52,6 @@ export default defineConfig({
     {
       name: 'setup',
       testMatch: /.*\.setup\.ts/,
-
       use: {
         storageState: undefined,
       },
@@ -52,7 +60,6 @@ export default defineConfig({
     {
       name: 'chromium',
       dependencies: ['setup'],
-
       use: {
         storageState: storagePath,
       },

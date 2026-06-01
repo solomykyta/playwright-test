@@ -14,15 +14,10 @@ jobs:
     env:
       WEB_URL: ${{ secrets.WEB_URL }}
       API_URL: ${{ secrets.API_URL }}
-
       BASIC_AUTH_USER: ${{ secrets.BASIC_AUTH_USER }}
       BASIC_AUTH_PASSWORD: ${{ secrets.BASIC_AUTH_PASSWORD }}
-
       TEST_GOOGLE_EMAIL: ${{ secrets.TEST_GOOGLE_EMAIL }}
       TEST_GOOGLE_PROVIDER_ID: ${{ secrets.TEST_GOOGLE_PROVIDER_ID }}
-
-      TEST_APPLE_EMAIL: ${{ secrets.TEST_APPLE_EMAIL }}
-      TEST_APPLE_PROVIDER_ID: ${{ secrets.TEST_APPLE_PROVIDER_ID }}
 
     steps:
       - uses: actions/checkout@v4
@@ -35,14 +30,43 @@ jobs:
 
       - run: npx playwright install --with-deps
 
+      # 🔥 setup auth
       - name: Run auth setup
         run: npx playwright test --project=setup
 
+      # 🔥 run tests
       - name: Run tests
         run: npx playwright test --project=chromium
 
-      - uses: actions/upload-artifact@v4
+      # 🔥 generate HTML report
+      - name: Generate report
         if: always()
+        run: npx playwright show-report --reporter html
+
+      # 🔥 upload report artifact
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report/
+
+  deploy-report:
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download report artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: playwright-report
