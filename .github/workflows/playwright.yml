@@ -18,6 +18,9 @@ jobs:
       BASIC_AUTH_PASSWORD: ${{ secrets.BASIC_AUTH_PASSWORD }}
       TEST_GOOGLE_EMAIL: ${{ secrets.TEST_GOOGLE_EMAIL }}
       TEST_GOOGLE_PROVIDER_ID: ${{ secrets.TEST_GOOGLE_PROVIDER_ID }}
+      TEST_APPLE_EMAIL: ${{ secrets.TEST_APPLE_EMAIL }}
+      TEST_APPLE_PROVIDER_ID: ${{ secrets.TEST_APPLE_PROVIDER_ID }}
+
 
     steps:
       - uses: actions/checkout@v4
