@@ -37,6 +37,7 @@ jobs:
 
       - run: npx playwright install --with-deps
 
+
       - name: Run auth setup
         run: npx playwright test --project=setup
 
