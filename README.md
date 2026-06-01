@@ -1,51 +1,33 @@
 # Playwright Automation Project
 
-## Description
-
-UI and API test automation framework built with Playwright + TypeScript.
-Uses global setup for authentication and storageState for authenticated test runs.
+## Live Report
+**[View latest report](https://solomykyta.github.io/playwright-test/)**
 
 ---
 
-## Tech stack
+## Description
+
+E2E UI and API automation project built with Playwright + TypeScript for a real development environment.
+The framework covers authenticated user flows and API endpoints, with execution handled via GitHub Actions and results published as a static HTML report.
+
+---
+
+## Tech Stack
 
 - Playwright
 - TypeScript
 - Node.js
-- dotenv
+- GitHub Actions
+- GitHub Pages
 
 ---
 
-## Project structure
-
-config/ - env and routes  
-tests/  
-api/ - API tests  
-ui/ - UI tests  
-setup/ - authentication setup (storageState generation)  
-storage/ - auth state  
-
----
-
-## Test coverage
-
-- Authentication (UI + API)
-- Home page functionality
-- Basic application flows (UI)
-- API authentication endpoints
-
----
-
-Notes
-- Environment variables are managed via .env
-- Sensitive data is excluded from repository
-- Auth state is generated via Playwright global setup
-
----
-
-## Run tests
-
-```bash
-npm install
-npx playwright test
-npx playwright test --project=setup
+## Structure
+config/ - env & configuration
+pages/ - page objects (POM)
+tests/
+api/ - API tests
+ui/ - UI tests
+setup/ - auth state setup
+storage/ - authentication state
+helpers/ - utilities
