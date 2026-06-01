@@ -50,7 +50,6 @@ setup('auth setup', async ({ browser }) => {
   ]);
 
   const cookies = await context.cookies();
-  console.log('COOKIES:', cookies);
 
   const storageFile = path.join(process.cwd(), 'storage/google.json');
   await fs.promises.mkdir(path.dirname(storageFile), { recursive: true });

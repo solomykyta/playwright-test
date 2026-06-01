@@ -1,49 +1,63 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from './BasePage';
+import { closePopups } from '../helpers/ui';
 
-export class ReaderPage extends BasePage {
+export class ReaderPage {
+  readonly page: Page;
+
   readonly chapterButton: Locator;
-  readonly libraryButton: Locator;
+  readonly heading: Locator;
+
+  readonly chapterDrawer: Locator;
 
   constructor(page: Page) {
-    super(page);
+    this.page = page;
 
     this.chapterButton = page.getByTestId(
       'reader-header-chapters-drawer-button'
     );
 
-    this.libraryButton = page.locator(
-      '[data-testid="add-book-to-library-button"], [data-testid="remove-book-to-library-button"]'
-    );
+    this.heading = page.locator('h1.px-chapter-text');
+
+    this.chapterDrawer = page.locator('[data-testid="chapters-drawer"]');
   }
 
   async open(url: string) {
-    await this.page.goto(url);
-    await this.waitForAppReady(); // 👈 теперь из BasePage
+    await this.page.goto(url, { waitUntil: 'domcontentloaded' });
+
+    await closePopups(this.page);
+
+    await this.waitForReaderReady();
+  }
+
+  async waitForReaderReady() {
+    await expect(this.heading).toBeVisible({ timeout: 20000 });
+
+    await expect(this.chapterButton).toBeVisible({ timeout: 20000 });
   }
 
   async openChapters() {
+    await expect(this.chapterButton).toBeVisible({ timeout: 20000 });
+
     await this.chapterButton.click();
+
+    await expect(this.chapterDrawer).toBeVisible({ timeout: 20000 });
   }
 
   async selectChapter(title: string) {
-    const chapter = this.page.locator(`text=${title}`).first();
-    await expect(chapter).toBeVisible({ timeout: 10000 });
+    const chapter = this.chapterDrawer.getByText(title, { exact: false });
+
+    await expect(chapter).toBeVisible({ timeout: 20000 });
+
     await chapter.click();
   }
 
-  async getFirstHeading() {
-    return this.page.getByRole('heading').first();
+  getHeading() {
+    return this.heading;
   }
 
-  async expectHeadingNotEmpty() {
-    const heading = await this.getFirstHeading();
-    await expect(heading).not.toHaveText('');
-  }
-
-  async expectChapterTitle(title: RegExp) {
+  async expectChapter2(text: string | RegExp) {
     await expect(
-      this.page.getByRole('heading', { name: title })
-    ).toBeVisible();
+      this.page.locator('h1.px-chapter-text', { hasText: text })
+    ).toBeVisible({ timeout: 20000 });
   }
 }

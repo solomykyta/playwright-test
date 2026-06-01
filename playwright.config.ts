@@ -9,9 +9,16 @@ export default defineConfig({
 
   fullyParallel: false,
   retries: 0,
+  timeout: 30_000,
+  expect: {
+  timeout: 10_000
+  },
 
   use: {
     baseURL: ENV.WEB_URL,
+    actionTimeout: 10_000,
+    navigationTimeout: 20_000,
+    
 
     httpCredentials: {
       username: ENV.BASIC_AUTH_USER,

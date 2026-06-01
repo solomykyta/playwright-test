@@ -32,7 +32,8 @@ export class HomePage extends BasePage {
 
   async open() {
     await this.page.goto('/');
-    await this.waitForAppReady(); // 👈 теперь через BasePage
+    await this.waitForAppReady();
+    await this.page.waitForLoadState('networkidle');
     await closePopups(this.page);
   }
 

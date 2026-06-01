@@ -1,10 +1,11 @@
 import { Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
+import { closePopups } from '../helpers/ui';
 
 export class BookPage extends BasePage {
   cover = () => this.page.getByTestId('mobile-book-image-cover');
   title = () => this.page.getByTestId('mobile-book-title');
-  readButton = () => this.page.getByTestId('mobile-book-read-button');
+  readButton = () => this.page.getByTestId('mobile-book-continue-reading-button');
   abstract = () => this.page.getByTestId('mobile-book-abstract');
   likeButton = () => this.page.getByTestId('book-like-button');
 
@@ -14,7 +15,9 @@ export class BookPage extends BasePage {
 
   async open(slug: string) {
     await this.page.goto(slug);
-    await this.waitForAppReady(); // 👈 из BasePage
+    await this.page.waitForLoadState('networkidle');
+    await this.waitForAppReady(); 
+    await closePopups(this.page);
   }
 
   async expectBasicUI() {

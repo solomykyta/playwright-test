@@ -10,7 +10,6 @@ test('session stable after reload', async ({ page }) => {
   ).toBeVisible();
 
   await page.reload();
-  await page.waitForLoadState('networkidle');
   await closePopups(page);
 
   await expect(

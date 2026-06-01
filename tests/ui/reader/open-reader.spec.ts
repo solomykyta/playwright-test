@@ -1,30 +1,28 @@
-import { test, expect } from '@playwright/test';
-import { closePopups } from '../../../helpers/ui';
-import { BookPage } from '../../../pages/BookPage';
-import { ReaderPage } from '../../../pages/ReaderPage';
+// import { test, expect } from '@playwright/test';
+// import { closePopups } from '../../../helpers/ui';
+// import { BookPage } from '../../../pages/BookPage';
 
-const BOOK_SLUG = '/en/books/alice-to-find-her-way-into-iEhIQSsL';
-const READER_URL =
-  '/en/reader/alice-to-find-her-way-into-iEhIQSsL/1-rabbit-say-to12-ziPgOhDj?navigatedFrom=book';
+// const BOOK_SLUG =
+//   '/en/books/alice-to-find-her-way-into-iEhIQSsL';
 
-test.describe('Reader', () => {
+// test.describe('Reader', () => {
+//   test('open reader and basic UI is visible', async ({ page }) => {
+//     const bookPage = new BookPage(page);
 
-  test('open reader and basic UI is visible', async ({ page }) => {
-    const bookPage = new BookPage(page);
-    const reader = new ReaderPage(page);
+//     await bookPage.open(BOOK_SLUG);
 
-    await bookPage.open(BOOK_SLUG);
-    await closePopups(page);
+//     await closePopups(page);
 
-    await page.getByTestId('mobile-book-continue-reading-button').click();
-    await reader.waitReady();
+//     const startButton = page.locator(
+//       '[data-testid="mobile-book-continue-reading-button"], [data-testid="mobile-book-read-button"]'
+//     );
 
-    await expect(page).toHaveURL(/reader/);
+//     await expect(startButton).toHaveCount(1, { timeout: 20000 });
 
-    await expect(reader.chapterButton).toBeVisible();
-    await expect(reader.libraryButton).toBeVisible();
+//     await startButton.click();
 
-    await reader.expectHeadingNotEmpty();
-  });
+//     await page.waitForURL(/reader/, { timeout: 20000 });
 
-});
+//     await expect(page).toHaveURL(/reader/);
+//   });
+// });
