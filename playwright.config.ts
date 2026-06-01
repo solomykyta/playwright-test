@@ -11,14 +11,12 @@ export default defineConfig({
   retries: 0,
   timeout: 30_000,
 
-  // 🔥 ВАЖНО: папка для результатов
   outputDir: 'test-results',
 
   expect: {
     timeout: 10_000,
   },
 
-  // 🔥 HTML report + CLI
   reporter: [
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
     ['list'],

@@ -30,20 +30,16 @@ jobs:
 
       - run: npx playwright install --with-deps
 
-      # 🔥 setup auth
       - name: Run auth setup
         run: npx playwright test --project=setup
 
-      # 🔥 run tests
       - name: Run tests
         run: npx playwright test --project=chromium
 
-      # 🔥 generate HTML report
       - name: Generate report
         if: always()
         run: npx playwright show-report --reporter html
 
-      # 🔥 upload report artifact
       - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v4
