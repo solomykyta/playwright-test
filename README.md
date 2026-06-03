@@ -27,7 +27,6 @@ Test execution is fully automated via GitHub Actions, with results published as 
 
 - Playwright
 - TypeScript
-- Node.js
 - GitHub Actions
 - GitHub Pages
 - dotenv
